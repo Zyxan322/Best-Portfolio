@@ -101,10 +101,12 @@ export default function ExperiencePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 0.6 }}
-                  className={`relative grid md:grid-cols-2 gap-6 ${right ? "md:[&>*:first-child]:col-start-2" : ""}`}
+                  className="relative grid md:grid-cols-2 gap-6"
                 >
                   <div className="absolute left-4 md:left-1/2 -translate-x-1/2 top-6 h-3 w-3 rounded-full bg-[oklch(0.88_0.10_90)] shadow-[0_0_0_6px_oklch(0.82_0.13_85/0.15)]" />
-                  <div className={`pl-12 md:pl-0 ${right ? "md:pr-12" : "md:pl-12"}`}>
+                  <div
+                    className={`pl-12 md:pl-0 ${right ? "md:col-start-2 md:pl-12" : "md:col-start-1 md:pr-12"}`}
+                  >
                     <div className="glass border-gradient rounded-2xl p-6 card-hover relative">
                       <div className="text-[10px] uppercase tracking-[0.3em] text-[oklch(0.88_0.10_90)]">
                         {t.when}
