@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { PageShell } from "@/components/site/PageShell";
@@ -17,41 +17,102 @@ import imgPulse from "@/assets/project-pulse.jpg";
 import imgLumen from "@/assets/project-lumen.jpg";
 import imgHelix from "@/assets/project-helix.jpg";
 
-export const Route = createFileRoute("/projects")({
-  component: ProjectsPage,
-  head: () => ({
-    meta: [
-      { title: "Projects — Muhammad Zeeshan" },
-      { name: "description", content: "Selected SaaS, UI/UX, web app, branding, dashboard, and AI tool projects." },
-      { property: "og:title", content: "Projects — Muhammad Zeeshan" },
-      { property: "og:description", content: "Cinematic case studies across SaaS, UI/UX, dashboards, and AI." },
-    ],
-    links: [{ rel: "canonical", href: "/projects" }],
-  }),
-});
-
-const categories = ["All", "SaaS", "UI/UX", "Web Apps", "Branding", "Dashboards", "AI Tools"] as const;
-type Cat = typeof categories[number];
+const categories = [
+  "All",
+  "SaaS",
+  "UI/UX",
+  "Web Apps",
+  "Branding",
+  "Dashboards",
+  "AI Tools",
+] as const;
+type Cat = (typeof categories)[number];
 
 const projects: { t: string; c: Exclude<Cat, "All">; d: string; tag: string; img: string }[] = [
-  { t: "Progmize Ops Cloud", c: "SaaS", d: "Multi-tenant operations dashboard with role-aware analytics.", tag: "Live", img: imgProgmize },
-  { t: "GST International", c: "Web Apps", d: "Cinematic corporate platform with bespoke brand system.", tag: "2024", img: imgGst },
-  { t: "Sentax LMS", c: "UI/UX", d: "Adaptive learning platform for cohort-based programs.", tag: "Case", img: imgSentax },
-  { t: "Aurum Analytics", c: "Dashboards", d: "Realtime KPI cockpit with custom data viz primitives.", tag: "Beta", img: imgAurum },
-  { t: "PrismAI Studio", c: "AI Tools", d: "GPT workflow builder with composable agent blocks.", tag: "v2", img: imgAi },
-  { t: "TechInn Brand", c: "Branding", d: "Full brand system, identity, and motion language.", tag: "2022", img: imgTechinn },
-  { t: "Pulse SaaS", c: "SaaS", d: "Subscription analytics with churn intelligence.", tag: "Live", img: imgPulse },
-  { t: "Lumen UI Kit", c: "UI/UX", d: "Premium component library for dark luxury surfaces.", tag: "Open", img: imgLumen },
-  { t: "Helix Agent", c: "AI Tools", d: "Custom autonomous research agent for product teams.", tag: "R&D", img: imgHelix },
+  {
+    t: "Progmize Ops Cloud",
+    c: "SaaS",
+    d: "Multi-tenant operations dashboard with role-aware analytics.",
+    tag: "Live",
+    img: imgProgmize,
+  },
+  {
+    t: "GST International",
+    c: "Web Apps",
+    d: "Cinematic corporate platform with bespoke brand system.",
+    tag: "2024",
+    img: imgGst,
+  },
+  {
+    t: "Sentax LMS",
+    c: "UI/UX",
+    d: "Adaptive learning platform for cohort-based programs.",
+    tag: "Case",
+    img: imgSentax,
+  },
+  {
+    t: "Aurum Analytics",
+    c: "Dashboards",
+    d: "Realtime KPI cockpit with custom data viz primitives.",
+    tag: "Beta",
+    img: imgAurum,
+  },
+  {
+    t: "PrismAI Studio",
+    c: "AI Tools",
+    d: "GPT workflow builder with composable agent blocks.",
+    tag: "v2",
+    img: imgAi,
+  },
+  {
+    t: "TechInn Brand",
+    c: "Branding",
+    d: "Full brand system, identity, and motion language.",
+    tag: "2022",
+    img: imgTechinn,
+  },
+  {
+    t: "Pulse SaaS",
+    c: "SaaS",
+    d: "Subscription analytics with churn intelligence.",
+    tag: "Live",
+    img: imgPulse,
+  },
+  {
+    t: "Lumen UI Kit",
+    c: "UI/UX",
+    d: "Premium component library for dark luxury surfaces.",
+    tag: "Open",
+    img: imgLumen,
+  },
+  {
+    t: "Helix Agent",
+    c: "AI Tools",
+    d: "Custom autonomous research agent for product teams.",
+    tag: "R&D",
+    img: imgHelix,
+  },
 ];
 
-
-function ProjectsPage() {
+export default function ProjectsPage() {
   const [cat, setCat] = useState<Cat>("All");
   const filtered = cat === "All" ? projects : projects.filter((p) => p.c === cat);
 
   return (
     <PageShell>
+      <Helmet>
+        <title>Projects — Muhammad Zeeshan</title>
+        <meta
+          name="description"
+          content="Selected SaaS, UI/UX, web app, branding, dashboard, and AI tool projects."
+        />
+        <meta property="og:title" content="Projects — Muhammad Zeeshan" />
+        <meta
+          property="og:description"
+          content="Cinematic case studies across SaaS, UI/UX, dashboards, and AI."
+        />
+        <link rel="canonical" href="https://github.com/Zyxan322/Best-Portfolio/projects" />
+      </Helmet>
       <PageHero
         eyebrow="Archive · 2026"
         words={["Selected", "Work."]}
@@ -115,8 +176,12 @@ function ProjectsPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                     <div className="absolute inset-0 shimmer opacity-40" />
-                    <div className="absolute top-3 right-3 text-[10px] uppercase tracking-widest glass rounded-full px-2 py-0.5">{p.tag}</div>
-                    <div className="absolute bottom-3 left-3 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{p.c}</div>
+                    <div className="absolute top-3 right-3 text-[10px] uppercase tracking-widest glass rounded-full px-2 py-0.5">
+                      {p.tag}
+                    </div>
+                    <div className="absolute bottom-3 left-3 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                      {p.c}
+                    </div>
                   </div>
                   <div className="flex items-start justify-between gap-3">
                     <h3 className="text-lg font-semibold">{p.t}</h3>

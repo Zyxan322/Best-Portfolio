@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { PageShell } from "@/components/site/PageShell";
 import { PageHero } from "@/components/site/PageHero";
@@ -6,19 +6,6 @@ import { Section, SectionHeader } from "@/components/site/Section";
 import { TiltCard } from "@/components/site/TiltCard";
 import { Brain, Code2, LineChart, Palette, Rocket, Workflow } from "lucide-react";
 import heroAbout from "@/assets/hero-about.jpg";
-
-export const Route = createFileRoute("/about")({
-  component: AboutPage,
-  head: () => ({
-    meta: [
-      { title: "About — Muhammad Zeeshan" },
-      { name: "description", content: "About Muhammad Zeeshan: a senior web developer and product designer specializing in SaaS UX, frontend engineering, and AI workflows." },
-      { property: "og:title", content: "About — Muhammad Zeeshan" },
-      { property: "og:description", content: "Product designer and senior web developer based in Gujranwala, Pakistan." },
-    ],
-    links: [{ rel: "canonical", href: "/about" }],
-  }),
-});
 
 const disciplines = [
   { i: Palette, t: "UI/UX Design", d: "Systems-level design across web and mobile surfaces." },
@@ -29,9 +16,22 @@ const disciplines = [
   { i: Workflow, t: "Social Media Growth", d: "Brand systems and content engines that compound." },
 ];
 
-function AboutPage() {
+export default function AboutPage() {
   return (
     <PageShell>
+      <Helmet>
+        <title>About — Muhammad Zeeshan</title>
+        <meta
+          name="description"
+          content="About Muhammad Zeeshan: a senior web developer and product designer specializing in SaaS UX, frontend engineering, and AI workflows."
+        />
+        <meta property="og:title" content="About — Muhammad Zeeshan" />
+        <meta
+          property="og:description"
+          content="Product designer and senior web developer based in Gujranwala, Pakistan."
+        />
+        <link rel="canonical" href="https://github.com/Zyxan322/Best-Portfolio/about" />
+      </Helmet>
       <PageHero
         eyebrow="About · Profile"
         words={["About", "Me."]}
@@ -58,14 +58,19 @@ function AboutPage() {
 
         <div className="grid lg:grid-cols-12 gap-6">
           <motion.div
-            initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="lg:col-span-7 glass border-gradient rounded-2xl p-8 card-hover relative"
           >
             <p className="text-lg text-muted-foreground leading-relaxed">
-              For over half a decade I've worked at the seam between design and engineering — building product surfaces that feel inevitable, codebases that scale gracefully, and workflows that turn AI from a novelty into a competitive edge.
+              For over half a decade I've worked at the seam between design and engineering —
+              building product surfaces that feel inevitable, codebases that scale gracefully, and
+              workflows that turn AI from a novelty into a competitive edge.
             </p>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              My work spans SaaS dashboards, brand systems, training platforms, and AI tooling. The throughline is craft: pixel-perfect, performant, and built to ship.
+              My work spans SaaS dashboards, brand systems, training platforms, and AI tooling. The
+              throughline is craft: pixel-perfect, performant, and built to ship.
             </p>
 
             <div className="mt-8 grid grid-cols-3 gap-4">
@@ -76,19 +81,25 @@ function AboutPage() {
               ].map((s) => (
                 <div key={s.v} className="rounded-xl bg-white/[0.02] border border-white/5 p-4">
                   <div className="font-display text-3xl text-metallic">{s.k}</div>
-                  <div className="text-xs text-muted-foreground uppercase tracking-wider mt-1">{s.v}</div>
+                  <div className="text-xs text-muted-foreground uppercase tracking-wider mt-1">
+                    {s.v}
+                  </div>
                 </div>
               ))}
             </div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="lg:col-span-5 glass-strong border-gradient rounded-2xl p-8 relative overflow-hidden card-hover"
           >
             <div className="absolute inset-0 grid-bg opacity-60" />
             <div className="relative">
-              <div className="text-[10px] uppercase tracking-[0.3em] text-[oklch(0.88_0.10_90)]">Snapshot</div>
+              <div className="text-[10px] uppercase tracking-[0.3em] text-[oklch(0.88_0.10_90)]">
+                Snapshot
+              </div>
               <dl className="mt-4 space-y-3 text-sm">
                 {[
                   ["Location", "Gujranwala, Pakistan"],
@@ -112,7 +123,13 @@ function AboutPage() {
         <SectionHeader eyebrow="Disciplines" title="Six surfaces. One operator." />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {disciplines.map((d, i) => (
-            <motion.div key={d.t} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
+            <motion.div
+              key={d.t}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06 }}
+            >
               <TiltCard className="p-6 h-full">
                 <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-[oklch(0.30_0.02_80)] to-[oklch(0.18_0.006_270)] inline-flex items-center justify-center border border-white/10">
                   <d.i className="h-5 w-5 text-[oklch(0.88_0.10_90)]" />

@@ -1,11 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useSpring,
-  useMotionValue,
-} from "framer-motion";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
@@ -65,32 +60,24 @@ import gameTombRaider from "@/assets/game-tombraider.jpg";
 import gameGow from "@/assets/game-gow.jpg";
 import gameWitcher from "@/assets/game-witcher.jpg";
 
-export const Route = createFileRoute("/")({
-  component: Home,
-  head: () => ({
-    meta: [
-      { title: "Muhammad Zeeshan — Senior Web Developer & SaaS UX Expert" },
-      {
-        name: "description",
-        content:
-          "Cinematic portfolio of Muhammad Zeeshan — SaaS UI/UX, frontend engineering, and AI-powered workflows. Premium digital products engineered with precision.",
-      },
-      { property: "og:title", content: "Muhammad Zeeshan — Portfolio" },
-      {
-        property: "og:description",
-        content:
-          "Building immersive digital products with design precision and AI-powered workflows.",
-      },
-      { property: "og:image", content: heroPortrait },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-  }),
-});
-
-function Home() {
+export default function Home() {
   return (
     <>
+      <Helmet>
+        <title>Muhammad Zeeshan — Senior Web Developer & SaaS UX Expert</title>
+        <meta
+          name="description"
+          content="Cinematic portfolio of Muhammad Zeeshan — SaaS UI/UX, frontend engineering, and AI-powered workflows. Premium digital products engineered with precision."
+        />
+        <meta property="og:title" content="Muhammad Zeeshan — Portfolio" />
+        <meta
+          property="og:description"
+          content="Building immersive digital products with design precision and AI-powered workflows."
+        />
+        <meta property="og:image" content={heroPortrait} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href="https://github.com/Zyxan322/Best-Portfolio/" />
+      </Helmet>
       <Hero />
       <Marquee />
       <Capabilities />
@@ -142,26 +129,21 @@ function Hero() {
       className="relative min-h-[100svh] pt-28 overflow-hidden noise"
       style={{ perspective: 1400 }}
     >
-      <motion.div
-        style={{ y: yBg }}
-        className="absolute inset-0 grid-bg pointer-events-none"
-      />
+      <motion.div style={{ y: yBg }} className="absolute inset-0 grid-bg pointer-events-none" />
       <div className="absolute inset-0 [background:var(--gradient-radial-spot)] pointer-events-none" />
 
       <motion.div
         aria-hidden
         className="absolute -top-32 -left-20 h-[28rem] w-[28rem] rounded-full blur-3xl opacity-30 animate-float"
         style={{
-          background:
-            "radial-gradient(circle, oklch(0.55 0.06 80) 0%, transparent 70%)",
+          background: "radial-gradient(circle, oklch(0.55 0.06 80) 0%, transparent 70%)",
         }}
       />
       <motion.div
         aria-hidden
         className="absolute top-1/3 -right-32 h-[32rem] w-[32rem] rounded-full blur-3xl opacity-25 animate-float"
         style={{
-          background:
-            "radial-gradient(circle, oklch(0.40 0.04 260) 0%, transparent 70%)",
+          background: "radial-gradient(circle, oklch(0.40 0.04 260) 0%, transparent 70%)",
           animationDelay: "2s",
         }}
       />
@@ -185,10 +167,7 @@ function Hero() {
 
         <div className="mt-8 grid lg:grid-cols-12 gap-10 items-center">
           {/* Text column */}
-          <motion.div
-            style={{ y: yText, scale: scaleText }}
-            className="lg:col-span-7"
-          >
+          <motion.div style={{ y: yText, scale: scaleText }} className="lg:col-span-7">
             <motion.h1
               initial="hidden"
               animate="show"
@@ -228,10 +207,9 @@ function Hero() {
               transition={{ delay: 0.7 }}
               className="mt-6 max-w-xl text-base md:text-lg text-muted-foreground"
             >
-              <span className="text-foreground/90">Senior Web Developer</span> ·
-              Product Designer · SaaS UX Expert. Building immersive digital
-              products with design precision, frontend engineering, and
-              AI-powered workflows.
+              <span className="text-foreground/90">Senior Web Developer</span> · Product Designer ·
+              SaaS UX Expert. Building immersive digital products with design precision, frontend
+              engineering, and AI-powered workflows.
             </motion.p>
 
             <motion.div
@@ -260,15 +238,12 @@ function Hero() {
               <IconLink href="https://github.com/zyxan322" label="GitHub">
                 <Github className="h-4 w-4" />
               </IconLink>
-              <IconLink
-                href="https://www.linkedin.com/in/zeeshan322/"
-                label="LinkedIn"
-              >
+              <IconLink href="https://www.linkedin.com/in/zeeshan322/" label="LinkedIn">
                 <Linkedin className="h-4 w-4" />
               </IconLink>
               <IconLink href="https://www.behance.net/zyxan_official" label="Behance">
                 <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4" aria-hidden>
-                  <path d="M7.8 6.2c1 0 1.9.1 2.6.3.7.2 1.3.5 1.8.8.5.4.8.8 1 1.4.2.5.3 1.2.3 1.9 0 .8-.2 1.5-.6 2-.4.5-.9 1-1.7 1.3 1 .3 1.8.8 2.3 1.5.5.7.7 1.5.7 2.5 0 .8-.2 1.5-.5 2.1-.3.6-.7 1.1-1.3 1.5-.5.4-1.2.7-1.9.8-.7.2-1.5.3-2.3.3H1V6.2h6.8zm-.4 5.7c.7 0 1.2-.2 1.7-.5.4-.3.6-.8.6-1.5 0-.4-.1-.7-.2-1-.1-.2-.3-.4-.6-.6-.2-.1-.5-.2-.8-.3-.3-.1-.6-.1-1-.1H4v3.9h3.4zm.2 6c.4 0 .7 0 1.1-.1.3-.1.6-.2.9-.4.3-.2.5-.4.6-.7.2-.3.2-.7.2-1.1 0-.9-.2-1.5-.7-1.9-.5-.4-1.2-.6-2-.6H4v4.7h3.6zM17.6 17.9c.4.4 1.1.7 1.9.7.6 0 1.1-.1 1.5-.4.4-.3.7-.6.8-.9h2.5c-.4 1.2-1 2.1-1.8 2.6-.8.5-1.8.8-3 .8-.8 0-1.6-.1-2.3-.4-.7-.3-1.2-.6-1.7-1.1-.5-.5-.8-1.1-1.1-1.8-.3-.7-.4-1.5-.4-2.3 0-.8.1-1.6.4-2.3.3-.7.6-1.3 1.1-1.8.5-.5 1.1-.9 1.7-1.2.7-.3 1.4-.4 2.2-.4.9 0 1.7.2 2.4.5.7.4 1.2.8 1.7 1.4.4.6.8 1.3 1 2.1.2.8.3 1.6.2 2.5h-7.8c0 .9.3 1.6.7 2zm3.3-5.4c-.3-.4-.9-.6-1.6-.6-.5 0-.8.1-1.1.2-.3.2-.5.4-.7.6-.2.2-.3.5-.4.7-.1.3-.1.5-.1.7h4.6c-.1-.7-.4-1.2-.7-1.6zM15.6 6.8h6v1.5h-6V6.8z"/>
+                  <path d="M7.8 6.2c1 0 1.9.1 2.6.3.7.2 1.3.5 1.8.8.5.4.8.8 1 1.4.2.5.3 1.2.3 1.9 0 .8-.2 1.5-.6 2-.4.5-.9 1-1.7 1.3 1 .3 1.8.8 2.3 1.5.5.7.7 1.5.7 2.5 0 .8-.2 1.5-.5 2.1-.3.6-.7 1.1-1.3 1.5-.5.4-1.2.7-1.9.8-.7.2-1.5.3-2.3.3H1V6.2h6.8zm-.4 5.7c.7 0 1.2-.2 1.7-.5.4-.3.6-.8.6-1.5 0-.4-.1-.7-.2-1-.1-.2-.3-.4-.6-.6-.2-.1-.5-.2-.8-.3-.3-.1-.6-.1-1-.1H4v3.9h3.4zm.2 6c.4 0 .7 0 1.1-.1.3-.1.6-.2.9-.4.3-.2.5-.4.6-.7.2-.3.2-.7.2-1.1 0-.9-.2-1.5-.7-1.9-.5-.4-1.2-.6-2-.6H4v4.7h3.6zM17.6 17.9c.4.4 1.1.7 1.9.7.6 0 1.1-.1 1.5-.4.4-.3.7-.6.8-.9h2.5c-.4 1.2-1 2.1-1.8 2.6-.8.5-1.8.8-3 .8-.8 0-1.6-.1-2.3-.4-.7-.3-1.2-.6-1.7-1.1-.5-.5-.8-1.1-1.1-1.8-.3-.7-.4-1.5-.4-2.3 0-.8.1-1.6.4-2.3.3-.7.6-1.3 1.1-1.8.5-.5 1.1-.9 1.7-1.2.7-.3 1.4-.4 2.2-.4.9 0 1.7.2 2.4.5.7.4 1.2.8 1.7 1.4.4.6.8 1.3 1 2.1.2.8.3 1.6.2 2.5h-7.8c0 .9.3 1.6.7 2zm3.3-5.4c-.3-.4-.9-.6-1.6-.6-.5 0-.8.1-1.1.2-.3.2-.5.4-.7.6-.2.2-.3.5-.4.7-.1.3-.1.5-.1.7h4.6c-.1-.7-.4-1.2-.7-1.6zM15.6 6.8h6v1.5h-6V6.8z" />
                 </svg>
               </IconLink>
               <IconLink href="mailto:m.zyxan322@gmail.com" label="Email">
@@ -388,9 +363,7 @@ function Hero() {
                       <div className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
                         Operator
                       </div>
-                      <div className="font-display text-2xl text-metallic mt-1">
-                        Zeeshan
-                      </div>
+                      <div className="font-display text-2xl text-metallic mt-1">Zeeshan</div>
                     </div>
                     <div className="text-right">
                       <div className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
@@ -638,8 +611,8 @@ function Process() {
               A cinematic four-act process.
             </h2>
             <p className="mt-4 text-muted-foreground max-w-md">
-              Each engagement moves through four deliberate acts — every artifact
-              shipped is a setup for the next.
+              Each engagement moves through four deliberate acts — every artifact shipped is a setup
+              for the next.
             </p>
 
             <div className="mt-10 space-y-3">
@@ -653,9 +626,7 @@ function Process() {
                   }`}
                 >
                   <div className="flex items-center justify-between text-sm">
-                    <span className="font-mono text-[oklch(0.88_0.10_90)]">
-                      {s.n}
-                    </span>
+                    <span className="font-mono text-[oklch(0.88_0.10_90)]">{s.n}</span>
                     <span className="font-semibold">{s.t}</span>
                   </div>
                 </button>
@@ -977,8 +948,7 @@ function TestimonialPreview() {
             Craft you can feel.
           </h2>
           <p className="mt-4 text-muted-foreground max-w-md">
-            A selection of words from the operators and founders I've shipped
-            with.
+            A selection of words from the operators and founders I've shipped with.
           </p>
           <Link
             to="/testimonials"
@@ -998,9 +968,9 @@ function TestimonialPreview() {
           <TiltCard className="p-10">
             <Quote className="h-10 w-10 text-[oklch(0.88_0.10_90)]" />
             <p className="mt-6 text-xl md:text-2xl leading-relaxed text-foreground/90">
-              Zeeshan ships at a velocity that doesn't compromise craft. The
-              motion, the type, the systems thinking — every detail is dialed.
-              He didn't just build our SaaS, he set its visual standard.
+              Zeeshan ships at a velocity that doesn't compromise craft. The motion, the type, the
+              systems thinking — every detail is dialed. He didn't just build our SaaS, he set its
+              visual standard.
             </p>
             <div className="mt-8 flex items-center gap-4">
               <div className="h-12 w-12 rounded-full bg-gradient-to-br from-[oklch(0.30_0.01_270)] to-[oklch(0.16_0.006_270)] border border-white/10 flex items-center justify-center">
@@ -1039,8 +1009,8 @@ function CTA() {
           Let's build something inevitable.
         </h2>
         <p className="relative mt-4 text-muted-foreground max-w-xl mx-auto">
-          Open for SaaS UX engagements, product design partnerships, and
-          high-craft frontend collaborations.
+          Open for SaaS UX engagements, product design partnerships, and high-craft frontend
+          collaborations.
         </p>
         <div className="relative mt-8 flex justify-center gap-3 flex-wrap">
           <Link
@@ -1162,7 +1132,11 @@ function Workflow() {
   ];
 
   return (
-    <section ref={ref} className="relative overflow-hidden py-24 md:py-32" style={{ perspective: 1600 }}>
+    <section
+      ref={ref}
+      className="relative overflow-hidden py-24 md:py-32"
+      style={{ perspective: 1600 }}
+    >
       <div className="mx-auto max-w-7xl px-4 mb-12">
         <div className="text-[10px] uppercase tracking-[0.3em] text-[oklch(0.88_0.10_90)]">
           End-to-end workflow
@@ -1309,9 +1283,7 @@ function FAQ() {
             <div className="text-[10px] uppercase tracking-[0.3em] text-[oklch(0.88_0.10_90)]">
               Still curious?
             </div>
-            <h3 className="mt-3 font-display text-3xl text-metallic">
-              Ask me anything.
-            </h3>
+            <h3 className="mt-3 font-display text-3xl text-metallic">Ask me anything.</h3>
             <p className="mt-3 text-sm text-muted-foreground">
               The fastest way to get a real answer is a 20-minute call.
             </p>
@@ -1344,9 +1316,7 @@ function FAQ() {
                   className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-semibold text-base md:text-lg">
-                    {it.q}
-                  </span>
+                  <span className="font-semibold text-base md:text-lg">{it.q}</span>
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     className="shrink-0 h-8 w-8 rounded-full glass border-gradient inline-flex items-center justify-center text-[oklch(0.88_0.10_90)]"
@@ -1362,9 +1332,7 @@ function FAQ() {
                   }}
                   className="overflow-hidden"
                 >
-                  <p className="px-6 pb-6 text-sm text-muted-foreground leading-relaxed">
-                    {it.a}
-                  </p>
+                  <p className="px-6 pb-6 text-sm text-muted-foreground leading-relaxed">{it.a}</p>
                 </motion.div>
               </motion.div>
             );
@@ -1443,9 +1411,8 @@ function BeyondCode() {
                 Growth-engineered content across every major platform.
               </h3>
               <p className="mt-4 text-sm text-muted-foreground max-w-md">
-                From Instagram and X to TikTok, LinkedIn, YouTube and beyond — I run
-                content strategy, hooks, and analytics-driven iteration that turns
-                attention into pipeline.
+                From Instagram and X to TikTok, LinkedIn, YouTube and beyond — I run content
+                strategy, hooks, and analytics-driven iteration that turns attention into pipeline.
               </p>
             </div>
             <div className="md:col-span-7 grid grid-cols-2 gap-4">
@@ -1533,7 +1500,12 @@ function GameCard({
         mx.set(0);
         my.set(0);
       }}
-      style={{ rotateX: rX, rotateY: rY, transformPerspective: 1000, transformStyle: "preserve-3d" }}
+      style={{
+        rotateX: rX,
+        rotateY: rY,
+        transformPerspective: 1000,
+        transformStyle: "preserve-3d",
+      }}
       className="group relative aspect-[3/4] rounded-2xl overflow-hidden glass border-gradient will-change-transform"
     >
       <img
@@ -1561,13 +1533,8 @@ function GameCard({
         #{String(index + 1).padStart(2, "0")}
       </div>
 
-      <div
-        className="absolute bottom-0 inset-x-0 p-5"
-        style={{ transform: "translateZ(30px)" }}
-      >
-        <div className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-          {tag}
-        </div>
+      <div className="absolute bottom-0 inset-x-0 p-5" style={{ transform: "translateZ(30px)" }}>
+        <div className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">{tag}</div>
         <div className="mt-1 font-display text-xl md:text-2xl text-metallic leading-tight">
           {name}
         </div>

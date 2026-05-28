@@ -1,7 +1,7 @@
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ArrowRight } from "lucide-react";
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { SmartCount } from "@/components/site/CountUp";
 
 type Stat = { k: string; v: string };
@@ -9,8 +9,8 @@ type CTA = { label: string; to?: string; href?: string; primary?: boolean; icon?
 
 type Props = {
   eyebrow: string;
-  title: React.ReactNode;       // can be string or array of words to split
-  words?: string[];              // optional split words for stagger
+  title: React.ReactNode; // can be string or array of words to split
+  words?: string[]; // optional split words for stagger
   description: string;
   image: string;
   imageAlt: string;
@@ -18,7 +18,16 @@ type Props = {
   ctas?: CTA[];
 };
 
-export function PageHero({ eyebrow, title, words, description, image, imageAlt, stats = [], ctas = [] }: Props) {
+export function PageHero({
+  eyebrow,
+  title,
+  words,
+  description,
+  image,
+  imageAlt,
+  stats = [],
+  ctas = [],
+}: Props) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
 
@@ -87,30 +96,32 @@ export function PageHero({ eyebrow, title, words, description, image, imageAlt, 
               variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
               className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight"
             >
-              {titleWords.length > 0
-                ? titleWords.map((w, i) => (
-                    <motion.span
-                      key={`${w}-${i}`}
-                      variants={{
-                        hidden: { y: 80, opacity: 0, rotateX: -40 },
-                        show: { y: 0, opacity: 1, rotateX: 0 },
-                      }}
-                      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                      className="inline-block text-metallic mr-[0.25em]"
-                      style={{ transformPerspective: 800 }}
-                    >
-                      {w}
-                      {i === titleWords.length - 1 && (
-                        <motion.span
-                          initial={{ width: 0 }}
-                          animate={{ width: "40%" }}
-                          transition={{ delay: 0.9, duration: 1 }}
-                          className="block h-[3px] mt-3 bg-gradient-to-r from-[oklch(0.82_0.13_85)] to-transparent"
-                        />
-                      )}
-                    </motion.span>
-                  ))
-                : <span className="text-metallic">{title}</span>}
+              {titleWords.length > 0 ? (
+                titleWords.map((w, i) => (
+                  <motion.span
+                    key={`${w}-${i}`}
+                    variants={{
+                      hidden: { y: 80, opacity: 0, rotateX: -40 },
+                      show: { y: 0, opacity: 1, rotateX: 0 },
+                    }}
+                    transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+                    className="inline-block text-metallic mr-[0.25em]"
+                    style={{ transformPerspective: 800 }}
+                  >
+                    {w}
+                    {i === titleWords.length - 1 && (
+                      <motion.span
+                        initial={{ width: 0 }}
+                        animate={{ width: "40%" }}
+                        transition={{ delay: 0.9, duration: 1 }}
+                        className="block h-[3px] mt-3 bg-gradient-to-r from-[oklch(0.82_0.13_85)] to-transparent"
+                      />
+                    )}
+                  </motion.span>
+                ))
+              ) : (
+                <span className="text-metallic">{title}</span>
+              )}
             </motion.h1>
 
             <motion.p
@@ -142,7 +153,9 @@ export function PageHero({ eyebrow, title, words, description, image, imageAlt, 
                     >
                       {c.icon}
                       {c.label}
-                      {c.primary && <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />}
+                      {c.primary && (
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      )}
                     </Link>
                   ) : (
                     <a
@@ -194,7 +207,10 @@ export function PageHero({ eyebrow, title, words, description, image, imageAlt, 
               mx.set((e.clientX - r.left) / r.width - 0.5);
               my.set((e.clientY - r.top) / r.height - 0.5);
             }}
-            onMouseLeave={() => { mx.set(0); my.set(0); }}
+            onMouseLeave={() => {
+              mx.set(0);
+              my.set(0);
+            }}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9, rotateY: 20 }}

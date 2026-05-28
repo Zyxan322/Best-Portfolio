@@ -5,7 +5,10 @@ import { cn } from "@/lib/utils";
 export function TiltCard({
   children,
   className,
-}: { children: React.ReactNode; className?: string }) {
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -24,9 +27,15 @@ export function TiltCard({
         x.set((e.clientX - r.left) / r.width - 0.5);
         y.set((e.clientY - r.top) / r.height - 0.5);
       }}
-      onMouseLeave={() => { x.set(0); y.set(0); }}
+      onMouseLeave={() => {
+        x.set(0);
+        y.set(0);
+      }}
       style={{ rotateX: rx, rotateY: ry, transformPerspective: 1000 }}
-      className={cn("relative group rounded-2xl glass border-gradient overflow-hidden card-hover", className)}
+      className={cn(
+        "relative group rounded-2xl glass border-gradient overflow-hidden card-hover",
+        className,
+      )}
     >
       <motion.div
         style={{

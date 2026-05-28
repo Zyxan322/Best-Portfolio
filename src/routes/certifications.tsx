@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { PageShell } from "@/components/site/PageShell";
 import { PageHero } from "@/components/site/PageHero";
@@ -6,19 +6,6 @@ import { Section, SectionHeader } from "@/components/site/Section";
 import { TiltCard } from "@/components/site/TiltCard";
 import { Award } from "lucide-react";
 import heroCerts from "@/assets/hero-certifications.jpg";
-
-export const Route = createFileRoute("/certifications")({
-  component: CertsPage,
-  head: () => ({
-    meta: [
-      { title: "Certifications — Muhammad Zeeshan" },
-      { name: "description", content: "Professional certifications across UX, frontend, SEO, and AI." },
-      { property: "og:title", content: "Certifications — Muhammad Zeeshan" },
-      { property: "og:description", content: "Recognized credentials across product, design, and engineering." },
-    ],
-    links: [{ rel: "canonical", href: "/certifications" }],
-  }),
-});
 
 const certs = [
   { t: "Python Essentials 1", o: "Cisco Networking Academy", y: "2024" },
@@ -32,9 +19,22 @@ const certs = [
   { t: "Odoo Functional", o: "Odoo Inc.", y: "2022" },
 ];
 
-function CertsPage() {
+export default function CertsPage() {
   return (
     <PageShell>
+      <Helmet>
+        <title>Certifications — Muhammad Zeeshan</title>
+        <meta
+          name="description"
+          content="Professional certifications across UX, frontend, SEO, and AI."
+        />
+        <meta property="og:title" content="Certifications — Muhammad Zeeshan" />
+        <meta
+          property="og:description"
+          content="Recognized credentials across product, design, and engineering."
+        />
+        <link rel="canonical" href="https://github.com/Zyxan322/Best-Portfolio/certifications" />
+      </Helmet>
       <PageHero
         eyebrow="Credentials · Verified"
         words={["Certifications."]}
@@ -53,15 +53,27 @@ function CertsPage() {
         ]}
       />
       <Section>
-        <SectionHeader eyebrow="Credentials" title="Certifications & continued craft." description="A non-exhaustive list of formal credentials. Practical track record on the Projects page." />
+        <SectionHeader
+          eyebrow="Credentials"
+          title="Certifications & continued craft."
+          description="A non-exhaustive list of formal credentials. Practical track record on the Projects page."
+        />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {certs.map((c, i) => (
-            <motion.div key={c.t} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
+            <motion.div
+              key={c.t}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06 }}
+            >
               <TiltCard className="p-6 h-full">
                 <Award className="h-6 w-6 text-[oklch(0.88_0.10_90)]" />
                 <h3 className="mt-4 text-lg font-semibold leading-snug">{c.t}</h3>
                 <div className="mt-2 text-sm text-muted-foreground">{c.o}</div>
-                <div className="mt-4 text-xs uppercase tracking-[0.3em] text-muted-foreground">{c.y}</div>
+                <div className="mt-4 text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                  {c.y}
+                </div>
               </TiltCard>
             </motion.div>
           ))}

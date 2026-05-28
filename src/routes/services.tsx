@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { PageShell } from "@/components/site/PageShell";
 import { PageHero } from "@/components/site/PageHero";
@@ -7,31 +7,47 @@ import { TiltCard } from "@/components/site/TiltCard";
 import { Bot, Brush, Code2, Megaphone, Search, Sparkles } from "lucide-react";
 import heroServices from "@/assets/hero-services.jpg";
 
-export const Route = createFileRoute("/services")({
-  component: ServicesPage,
-  head: () => ({
-    meta: [
-      { title: "Services — Muhammad Zeeshan" },
-      { name: "description", content: "Services: SaaS UI/UX, frontend development, product design, SEO optimization, AI automation, social media strategy." },
-      { property: "og:title", content: "Services — Muhammad Zeeshan" },
-      { property: "og:description", content: "Premium engagements across SaaS UX, frontend engineering, and AI workflows." },
-    ],
-    links: [{ rel: "canonical", href: "/services" }],
-  }),
-});
-
 const services = [
-  { i: Brush, t: "SaaS UI/UX Design", d: "Activation-focused product surfaces, design systems, and motion language." },
-  { i: Code2, t: "Frontend Development", d: "Type-safe React/Next.js builds with performance budgets and motion." },
-  { i: Sparkles, t: "Product Design", d: "End-to-end product partnership from research to launch." },
+  {
+    i: Brush,
+    t: "SaaS UI/UX Design",
+    d: "Activation-focused product surfaces, design systems, and motion language.",
+  },
+  {
+    i: Code2,
+    t: "Frontend Development",
+    d: "Type-safe React/Next.js builds with performance budgets and motion.",
+  },
+  {
+    i: Sparkles,
+    t: "Product Design",
+    d: "End-to-end product partnership from research to launch.",
+  },
   { i: Search, t: "SEO Optimization", d: "Technical SEO, AEO and GEO strategy, content systems." },
   { i: Bot, t: "AI Automation", d: "Custom GPT pipelines, agents, and ops integrations." },
-  { i: Megaphone, t: "Social Media Strategy", d: "Brand voice, content engines, and compounding distribution." },
+  {
+    i: Megaphone,
+    t: "Social Media Strategy",
+    d: "Brand voice, content engines, and compounding distribution.",
+  },
 ];
 
-function ServicesPage() {
+export default function ServicesPage() {
   return (
     <PageShell>
+      <Helmet>
+        <title>Services — Muhammad Zeeshan</title>
+        <meta
+          name="description"
+          content="Services: SaaS UI/UX, frontend development, product design, SEO optimization, AI automation, social media strategy."
+        />
+        <meta property="og:title" content="Services — Muhammad Zeeshan" />
+        <meta
+          property="og:description"
+          content="Premium engagements across SaaS UX, frontend engineering, and AI workflows."
+        />
+        <link rel="canonical" href="https://github.com/Zyxan322/Best-Portfolio/services" />
+      </Helmet>
       <PageHero
         eyebrow="Engagements · 2026"
         words={["Services."]}
@@ -58,14 +74,22 @@ function ServicesPage() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {services.map((s, i) => (
-            <motion.div key={s.t} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}>
+            <motion.div
+              key={s.t}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.07 }}
+            >
               <TiltCard className="p-6 h-full">
                 <div className="relative h-12 w-12 rounded-xl bg-gradient-to-br from-[oklch(0.30_0.02_80)] to-[oklch(0.18_0.006_270)] inline-flex items-center justify-center border border-white/10 shadow-[var(--shadow-gold)]">
                   <s.i className="h-5 w-5 text-[oklch(0.88_0.10_90)]" />
                 </div>
                 <h3 className="mt-5 text-xl font-semibold">{s.t}</h3>
                 <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
-                <div className="mt-5 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">0{i + 1} · Service</div>
+                <div className="mt-5 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                  0{i + 1} · Service
+                </div>
               </TiltCard>
             </motion.div>
           ))}

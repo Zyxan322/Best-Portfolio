@@ -1,22 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { PageShell } from "@/components/site/PageShell";
 import { PageHero } from "@/components/site/PageHero";
 import { Section, SectionHeader } from "@/components/site/Section";
 import heroSkills from "@/assets/hero-skills.jpg";
-
-export const Route = createFileRoute("/skills")({
-  component: SkillsPage,
-  head: () => ({
-    meta: [
-      { title: "Skills — Muhammad Zeeshan" },
-      { name: "description", content: "Skill matrix: Next.js, TypeScript, React, Tailwind, UI/UX, SEO, AI tools, Framer Motion, Odoo, Product Design." },
-      { property: "og:title", content: "Skills — Muhammad Zeeshan" },
-      { property: "og:description", content: "A precision toolkit for shipping premium SaaS products." },
-    ],
-    links: [{ rel: "canonical", href: "/skills" }],
-  }),
-});
 
 const skills = [
   { t: "HTML", v: 98 },
@@ -31,9 +18,22 @@ const skills = [
   { t: "Machine Learning", v: 85 },
 ];
 
-function SkillsPage() {
+export default function SkillsPage() {
   return (
     <PageShell>
+      <Helmet>
+        <title>Skills — Muhammad Zeeshan</title>
+        <meta
+          name="description"
+          content="Skill matrix: Next.js, TypeScript, React, Tailwind, UI/UX, SEO, AI tools, Framer Motion, Odoo, Product Design."
+        />
+        <meta property="og:title" content="Skills — Muhammad Zeeshan" />
+        <meta
+          property="og:description"
+          content="A precision toolkit for shipping premium SaaS products."
+        />
+        <link rel="canonical" href="https://github.com/Zyxan322/Best-Portfolio/skills" />
+      </Helmet>
       <PageHero
         eyebrow="Toolkit · Stack"
         words={["Skills."]}

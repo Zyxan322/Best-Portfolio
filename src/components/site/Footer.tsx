@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail, Globe } from "lucide-react";
 
 export function Footer() {
@@ -10,11 +10,12 @@ export function Footer() {
           <div>
             <div className="font-display text-2xl text-metallic">Muhammad Zeeshan</div>
             <p className="mt-3 text-sm text-muted-foreground max-w-sm">
-              Senior Web Developer, Product Designer, and SaaS UX expert crafting cinematic digital products.
+              Senior Web Developer, Product Designer, and SaaS UX expert crafting cinematic digital
+              products.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-2 text-sm">
-            {["Home","About","Projects","Skills","Services","Contact"].map((l) => (
+            {["Home", "About", "Projects", "Skills", "Services", "Contact"].map((l) => (
               <Link
                 key={l}
                 to={`/${l === "Home" ? "" : l.toLowerCase()}`}
@@ -25,10 +26,18 @@ export function Footer() {
             ))}
           </div>
           <div className="flex md:justify-end items-start gap-2">
-            <SocialLink href="https://github.com/zyxan322" label="GitHub"><Github className="h-4 w-4" /></SocialLink>
-            <SocialLink href="https://www.linkedin.com/in/zeeshan322/" label="LinkedIn"><Linkedin className="h-4 w-4" /></SocialLink>
-            <SocialLink href="https://muhammadzeeshanportfolio.vercel.app/" label="Portfolio"><Globe className="h-4 w-4" /></SocialLink>
-            <SocialLink href="mailto:m.zyxan322@gmail.com" label="Email"><Mail className="h-4 w-4" /></SocialLink>
+            <SocialLink href="https://github.com/zyxan322" label="GitHub">
+              <Github className="h-4 w-4" />
+            </SocialLink>
+            <SocialLink href="https://www.linkedin.com/in/zeeshan322/" label="LinkedIn">
+              <Linkedin className="h-4 w-4" />
+            </SocialLink>
+            <SocialLink href="https://muhammadzeeshanportfolio.vercel.app/" label="Portfolio">
+              <Globe className="h-4 w-4" />
+            </SocialLink>
+            <SocialLink href="mailto:m.zyxan322@gmail.com" label="Email">
+              <Mail className="h-4 w-4" />
+            </SocialLink>
           </div>
         </div>
         <div className="mt-10 pt-6 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 text-xs text-muted-foreground">
@@ -40,7 +49,15 @@ export function Footer() {
   );
 }
 
-function SocialLink({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
+function SocialLink({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <a
       href={href}

@@ -1,4 +1,4 @@
-import { Link, useLocation } from "@tanstack/react-router";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -28,7 +28,9 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => { setOpen(false); }, [pathname]);
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   return (
     <motion.header
@@ -195,7 +197,6 @@ export function Navbar() {
             </span>
           </Link>
 
-
           <nav className="hidden lg:flex items-center gap-1">
             {links.map((l) => {
               const active = pathname === l.to;
@@ -237,11 +238,21 @@ export function Navbar() {
           >
             <AnimatePresence mode="wait" initial={false}>
               {open ? (
-                <motion.span key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
+                <motion.span
+                  key="x"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                >
                   <X className="h-5 w-5" />
                 </motion.span>
               ) : (
-                <motion.span key="m" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
+                <motion.span
+                  key="m"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                >
                   <Menu className="h-5 w-5" />
                 </motion.span>
               )}
@@ -264,7 +275,9 @@ export function Navbar() {
                     to={l.to}
                     className={cn(
                       "px-3 py-2.5 rounded-md text-sm uppercase tracking-wider",
-                      pathname === l.to ? "text-foreground bg-white/5" : "text-muted-foreground hover:text-foreground hover:bg-white/5",
+                      pathname === l.to
+                        ? "text-foreground bg-white/5"
+                        : "text-muted-foreground hover:text-foreground hover:bg-white/5",
                     )}
                   >
                     {l.label}

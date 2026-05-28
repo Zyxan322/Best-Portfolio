@@ -1,22 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { PageShell } from "@/components/site/PageShell";
 import { PageHero } from "@/components/site/PageHero";
 import { Section, SectionHeader } from "@/components/site/Section";
 import heroExperience from "@/assets/hero-experience.jpg";
-
-export const Route = createFileRoute("/experience")({
-  component: ExperiencePage,
-  head: () => ({
-    meta: [
-      { title: "Experience — Muhammad Zeeshan" },
-      { name: "description", content: "Professional experience: Progmize Software Systems, GST International, Sentax Training Institute, TechInn Solutions." },
-      { property: "og:title", content: "Experience — Muhammad Zeeshan" },
-      { property: "og:description", content: "Senior web developer experience across SaaS, training, and brand platforms." },
-    ],
-    links: [{ rel: "canonical", href: "/experience" }],
-  }),
-});
 
 const timeline = [
   {
@@ -61,9 +48,22 @@ const timeline = [
   },
 ];
 
-function ExperiencePage() {
+export default function ExperiencePage() {
   return (
     <PageShell>
+      <Helmet>
+        <title>Experience — Muhammad Zeeshan</title>
+        <meta
+          name="description"
+          content="Professional experience: Progmize Software Systems, GST International, Sentax Training Institute, TechInn Solutions."
+        />
+        <meta property="og:title" content="Experience — Muhammad Zeeshan" />
+        <meta
+          property="og:description"
+          content="Senior web developer experience across SaaS, training, and brand platforms."
+        />
+        <link rel="canonical" href="https://github.com/Zyxan322/Best-Portfolio/experience" />
+      </Helmet>
       <PageHero
         eyebrow="Trajectory · 2021—2026"
         words={["Experience."]}
@@ -106,12 +106,17 @@ function ExperiencePage() {
                   <div className="absolute left-4 md:left-1/2 -translate-x-1/2 top-6 h-3 w-3 rounded-full bg-[oklch(0.88_0.10_90)] shadow-[0_0_0_6px_oklch(0.82_0.13_85/0.15)]" />
                   <div className={`pl-12 md:pl-0 ${right ? "md:pr-12" : "md:pl-12"}`}>
                     <div className="glass border-gradient rounded-2xl p-6 card-hover relative">
-                      <div className="text-[10px] uppercase tracking-[0.3em] text-[oklch(0.88_0.10_90)]">{t.when}</div>
+                      <div className="text-[10px] uppercase tracking-[0.3em] text-[oklch(0.88_0.10_90)]">
+                        {t.when}
+                      </div>
                       <h3 className="mt-2 text-xl font-semibold">{t.role}</h3>
                       <div className="text-sm text-muted-foreground">{t.co}</div>
                       <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                         {t.notes.map((n) => (
-                          <li key={n} className="flex gap-2"><span className="text-[oklch(0.88_0.10_90)]">▸</span>{n}</li>
+                          <li key={n} className="flex gap-2">
+                            <span className="text-[oklch(0.88_0.10_90)]">▸</span>
+                            {n}
+                          </li>
                         ))}
                       </ul>
                     </div>
