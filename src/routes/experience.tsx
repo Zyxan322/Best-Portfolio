@@ -7,43 +7,80 @@ import heroExperience from "@/assets/hero-experience.jpg";
 
 const timeline = [
   {
-    co: "Progmize Software Systems",
-    role: "Senior Web Developer & Product Designer",
+    co: "Progmize",
+    role: "IT Product Manager",
     when: "2024 — Present",
     notes: [
-      "Led design and frontend for multi-tenant SaaS dashboards",
-      "Established a design-token system across product surfaces",
-      "Shipped AI-assisted workflows that cut ops cycles by 40%",
+      "Define clear product strategy and roadmap in line with business objectives",
+      "Plan sprints, workflows, and tasks with ClickUp to enhance team productivity",
+      "Collaborate with developers to design scalable and maintainable product architecture",
+      "Automate processes with AI tools to enhance productivity and accelerate delivery",
     ],
   },
   {
-    co: "GST International",
-    role: "Web Developer & UI Designer",
-    when: "2023 — 2024",
+    co: "Progmize",
+    role: "UI UX Product Designer & Developer",
+    when: "2023 — Present",
     notes: [
-      "Rebuilt corporate platform with cinematic brand storytelling",
-      "Improved Lighthouse performance from 58 to 96",
-      "Designed lead capture flows lifting conversion by 27%",
+      "Design user-friendly SaaS interfaces, enhancing overall usability and experience",
+      "Develop wireframes, prototypes, and scalable design systems in Figma",
+      "Boost user interaction by approximately 20% through progressive UX enhancements",
+      "Work closely with developers and product teams to deliver high-quality digital products",
     ],
   },
   {
-    co: "Sentax Training Institute",
-    role: "Frontend Developer & UX Designer",
-    when: "2022 — 2023",
+    co: "Progmize (Dubai)",
+    role: "Social Media Manager",
+    when: "2022 — Present",
     notes: [
-      "Designed an adaptive learning UI for cohort-based programs",
-      "Built course catalog with optimized search and filters",
-      "Owned design system across marketing and product",
+      "Planned and executed multi-platform social media plans across key channels",
+      "Managed X, LinkedIn, Facebook, and Instagram page presences",
+      "Produced high-quality reel, post, and video content to drive engagement",
+      "Optimized digital content for SEO, AEO, and GEO strategy",
     ],
   },
   {
-    co: "TechInn Solutions",
-    role: "Frontend Developer",
-    when: "2021 — 2022",
+    co: "Unique School System",
+    role: "Social Media Manager",
+    when: "2023 — 2025",
     notes: [
-      "Delivered client websites with strict performance budgets",
-      "Implemented motion-rich landing pages and microinteractions",
-      "Standardized component library across project teams",
+      "Developed and maintained social media content plans for an educational facility",
+      "Created and published reels, videos, and daily content on Facebook, Instagram, and YouTube",
+      "Managed, uploaded, and optimized YouTube channel content",
+      "Designed print media materials including brochures, magazines, and promotional items",
+    ],
+  },
+  {
+    co: "Freelance",
+    role: "UI/UX Designer",
+    when: "2020 — 2023",
+    notes: [
+      "Provided end-to-end product design services to international clients",
+      "Customized landing pages, administrative dashboards, and mobile interfaces",
+      "Created clean, responsive front-end interfaces using HTML and CSS",
+      "Utilized basic Python and SQL to assist with backend logic and databases",
+    ],
+  },
+  {
+    co: "TechInn Solution",
+    role: "Social Media Manager",
+    when: "2020 — 2022",
+    notes: [
+      "Developed and implemented content strategies across multiple social platforms",
+      "Created and published reels, static posts, and creative marketing materials",
+      "Managed content scheduling, posting pipelines, and analytics monitoring",
+      "Fostered growth in brand awareness and audience involvement",
+    ],
+  },
+  {
+    co: "Independent",
+    role: "Social Media Manager",
+    when: "2016 — 2026",
+    notes: [
+      "Managed personal YouTube, Facebook, Instagram, and Discord communities",
+      "Produced gaming content, reels, and video production materials",
+      "Developed and engaged the audience through trend-based digital strategies",
+      "Optimized media content to maximize audience reach and engagement",
     ],
   },
 ];
@@ -65,15 +102,15 @@ export default function ExperiencePage() {
         <link rel="canonical" href="https://github.com/Zyxan322/Best-Portfolio/experience" />
       </Helmet>
       <PageHero
-        eyebrow="Trajectory · 2021—2026"
+        eyebrow="Trajectory · 2016—2026"
         words={["Experience."]}
         title="Experience."
-        description="Five years compounding across SaaS, training platforms, and brand systems — shipping product surfaces that feel inevitable and codebases that scale."
+        description="A decade compounding across SaaS development, UI/UX product design, and digital content strategy — shipping intuitive product surfaces and growing brand engagement."
         image={heroExperience}
         imageAlt="Cascading obsidian timeline slabs in volumetric haze"
         stats={[
-          { k: "4", v: "Companies" },
-          { k: "5+", v: "Years" },
+          { k: "5", v: "Companies/Clients" },
+          { k: "10+", v: "Years" },
           { k: "40+", v: "Releases" },
         ]}
         ctas={[
